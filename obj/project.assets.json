@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\andy_\\Documents\\Cursos\\C# con NET Core\\Etapa1\\Etapa1.csproj",
+      "projectUniqueName": "C:\\Users\\andy_\\Documents\\Cursos\\C# con NET Core\\EscuelaC#2\\Etapa1.csproj",
       "projectName": "Etapa1",
-      "projectPath": "C:\\Users\\andy_\\Documents\\Cursos\\C# con NET Core\\Etapa1\\Etapa1.csproj",
+      "projectPath": "C:\\Users\\andy_\\Documents\\Cursos\\C# con NET Core\\EscuelaC#2\\Etapa1.csproj",
       "packagesPath": "C:\\Users\\andy_\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\andy_\\Documents\\Cursos\\C# con NET Core\\Etapa1\\obj\\",
+      "outputPath": "C:\\Users\\andy_\\Documents\\Cursos\\C# con NET Core\\EscuelaC#2\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\andy_\\AppData\\Roaming\\NuGet\\NuGet.Config"

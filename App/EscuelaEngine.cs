@@ -35,7 +35,7 @@ namespace CoreEscuela
                         var rnd = new Random(System.Environment.TickCount);
                         for (int i = 0; i < 5; i++)
                         {
-                            var ev = new Evaluaciones
+                            var ev = new Evaluación
                             {
                                 Asignatura = asignatura,
                                 Nombre = $"{asignatura.Nombre} Ev#{i + 1}",
