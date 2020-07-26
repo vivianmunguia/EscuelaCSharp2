@@ -4,8 +4,8 @@ using System.Linq;
 using CoreEscuela.Entidades;
 
 namespace CoreEscuela
-{
-    public class EscuelaEngine
+{   //el modificador sealed indica que se pueden crear instancias de la clase pero no heredar de ella
+    public sealed class EscuelaEngine
     {
         public Escuela Escuela { get; set; }
 
@@ -16,7 +16,8 @@ namespace CoreEscuela
 
         public void Inicializar()
         {
-            Escuela = new Escuela("Platzi Academy", 2012, TiposEscuela.Primaria,
+            Escuela = new Escuela("Platzi Academy", 2012, 
+            TiposEscuela.Primaria,
             ciudad: "Bogotá", pais: "Colombia");
             CargarCursos();
             CargarAsignaturas();

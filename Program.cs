@@ -18,6 +18,7 @@ namespace CoreEscuela
             
             ImprimirCursosEscuela(engine.Escuela);
 
+            var obj = new ObjetoEscuelaBase();
         }
 
         private static void ImprimirCursosEscuela(Escuela escuela)
