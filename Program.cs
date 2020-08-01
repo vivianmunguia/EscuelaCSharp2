@@ -17,45 +17,7 @@ namespace CoreEscuela
             //Printer.Beep(10000, cantidad:10);
             
             ImprimirCursosEscuela(engine.Escuela);
-
-            //var obj = new ObjetoEscuelaBase();
-            Printer.DrawLine(20);
-            Printer.DrawLine(20);
-            Printer.DrawLine(20);
-            Printer.WriteTitle("Pruebas de Polimorfismo");
-            var alumnoTest = new Alumno{Nombre = "Claire Underwood"};
-
-            Printer.WriteTitle("Alumno");
-            WriteLine($"Alumno: {alumnoTest.Nombre}");
-            WriteLine($"Alumno: {alumnoTest.UniqueId}");
-            WriteLine($"Alumno: {alumnoTest.GetType()}");
-
-            ObjetoEscuelaBase ob = alumnoTest;
-            Printer.WriteTitle("ObjetoEscuela");
-            WriteLine($"Alumno: {ob.Nombre}");
-            WriteLine($"Alumno: {ob.UniqueId}");
-            WriteLine($"Alumno: {ob.GetType()}");
-
-            var objDummy = new ObjetoEscuelaBase{Nombre = "Frank Underwood"};
-            Printer.WriteTitle("ObjetoEscuelaBase");
-            WriteLine($"Alumno: {objDummy.Nombre}");
-            WriteLine($"Alumno: {objDummy.UniqueId}");
-            WriteLine($"Alumno: {objDummy.GetType()}");
-
-            var evaluación = new Evaluación(){Nombre="Evaluación de math", Nota=4.5f};
-            Printer.WriteTitle("Evaluación");
-            WriteLine($"Evaluación: {evaluación.Nombre}");
-            WriteLine($"Evaluación: {evaluación.UniqueId}");
-            WriteLine($"Evaluación: {evaluación.Nota}");
-            WriteLine($"Evaluación: {evaluación.GetType()}");
-        
-            ob = evaluación;
-            Printer.WriteTitle("ObjetoEscuela");
-            WriteLine($"Alumno: {ob.Nombre}");
-            WriteLine($"Alumno: {ob.UniqueId}");
-            WriteLine($"Alumno: {ob.GetType()}");
-
-            alumnoTest = (Alumno) (ObjetoEscuelaBase) evaluación;
+            var listaObjetos = engine.GetObjetosEscuela();
         }
 
         private static void ImprimirCursosEscuela(Escuela escuela)
