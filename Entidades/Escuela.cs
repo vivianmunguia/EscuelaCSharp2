@@ -38,11 +38,13 @@ namespace CoreEscuela.Entidades
         public void LimpiarLugar() {
             Printer.DrawLine();
             Console.WriteLine("Limpiando escuela");
+            
             foreach (var curso in Cursos)
             {
                 curso.LimpiarLugar();
             }
-            Console.WriteLine($"Curso {Nombre} limpio");
+            Printer.WriteTitle($"Escuela {Nombre} limpia");
+            Printer.Beep(1000, cantidad:3);
         }
     }
 }

@@ -18,6 +18,11 @@ namespace CoreEscuela
             
             ImprimirCursosEscuela(engine.Escuela);
             var listaObjetos = engine.GetObjetosEscuela();
+
+            //engine.Escuela.LimpiarLugar();
+            var listaILugar = from obj in listaObjetos 
+                              where obj is ILugar
+                              select (ILugar)obj;
         }
 
         private static void ImprimirCursosEscuela(Escuela escuela)
