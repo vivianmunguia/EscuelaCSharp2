@@ -24,26 +24,48 @@ namespace CoreEscuela
             CargarEvaluaciones();
 
         }
-
-        public List<ObjetoEscuelaBase> GetObjetosEscuela()
+        public (List<ObjetoEscuelaBase>, int) GetObjetosEscuela(
+            out int conteoEvaluaciones,
+            out int conteoCursos,
+            out int conteoAsignaturas,
+            out int conteoAlumnos,
+            bool traeEvaluaciones = true, //parámetro opcional, debe ir al final
+            bool traeAlumnos = true, //parámetro opcional, debe ir al final
+            bool traeAsignaturas = true, //parámetro opcional, debe ir al final
+            bool traeCursos = true //parámetro opcional, debe ir al final
+            )
         {
+            conteoEvaluaciones = conteoAsignaturas = conteoAlumnos = 0; //asignaciones múltiples
             var listaObj = new List<ObjetoEscuelaBase>();
             listaObj.Add(Escuela);
+
+            if (traeCursos)
             listaObj.AddRange(Escuela.Cursos);
-
+            
+            conteoCursos = Escuela.Cursos.Count;
             foreach (var curso in Escuela.Cursos)
-            {
+            {   
+                conteoAsignaturas += curso.Asignaturas.Count;
+                conteoAlumnos += curso.Alumnos.Count;
+                if(traeAsignaturas)
                 listaObj.AddRange(curso.Asignaturas);
-                listaObj.AddRange(curso.Alumnos);
 
-                foreach (var alumno in curso.Alumnos)
+                if (traeAlumnos)
+                    listaObj.AddRange(curso.Alumnos);
+
+                if (traeEvaluaciones)
                 {
-                    listaObj.AddRange(alumno.Evaluaciones);
+                    foreach (var alumno in curso.Alumnos)
+                    {
+                        listaObj.AddRange(alumno.Evaluaciones);
+                        conteoEvaluaciones += alumno.Evaluaciones.Count;
+                    }
                 }
             }
             
-            return listaObj;
+            return (listaObj, conteoEvaluaciones);
         }
+        
 #region Métodos de carga
         private void CargarEvaluaciones()
         {
