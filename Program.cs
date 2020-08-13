@@ -20,12 +20,7 @@ namespace CoreEscuela
             ImprimirCursosEscuela(engine.Escuela);
 
             int dummy = 0;
-            var listaObjetos = engine.GetObjetosEscuela(
-            out int conteoEvaluaciones,
-            out int conteoCursos,
-            out int conteoAsignaturas,
-            out int conteoAlumnos
-            );
+            var listaObjetos = engine.GetObjetosEscuela();
 
         }
 

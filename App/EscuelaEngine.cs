@@ -16,13 +16,55 @@ namespace CoreEscuela
 
         public void Inicializar()
         {
-            Escuela = new Escuela("Platzi Academy", 2012, 
+            Escuela = new Escuela("Platzi Academy", 2012,
             TiposEscuela.Primaria,
             ciudad: "Bogotá", pais: "Colombia");
             CargarCursos();
             CargarAsignaturas();
             CargarEvaluaciones();
 
+        }
+        public (List<ObjetoEscuelaBase>, int) GetObjetosEscuela(
+            bool traeEvaluaciones = true, //parámetro opcional, debe ir al final
+            bool traeAlumnos = true, //parámetro opcional, debe ir al final
+            bool traeAsignaturas = true, //parámetro opcional, debe ir al final
+            bool traeCursos = true //parámetro opcional, debe ir al final
+            )
+        {
+            return GetObjetosEscuela(out int dummy, out dummy, out dummy, out dummy);
+        }
+        public (List<ObjetoEscuelaBase>, int) GetObjetosEscuela(
+            out int conteoEvaluaciones,
+            bool traeEvaluaciones = true, //parámetro opcional, debe ir al final
+            bool traeAlumnos = true, //parámetro opcional, debe ir al final
+            bool traeAsignaturas = true, //parámetro opcional, debe ir al final
+            bool traeCursos = true //parámetro opcional, debe ir al final
+            )
+        {
+            return GetObjetosEscuela(out conteoEvaluaciones, out int dummy, out dummy, out dummy);
+        }
+        public (List<ObjetoEscuelaBase>, int) GetObjetosEscuela(
+            out int conteoEvaluaciones,
+            out int conteoCursos,
+            bool traeEvaluaciones = true, //parámetro opcional, debe ir al final
+            bool traeAlumnos = true, //parámetro opcional, debe ir al final
+            bool traeAsignaturas = true, //parámetro opcional, debe ir al final
+            bool traeCursos = true //parámetro opcional, debe ir al final
+            )
+        {
+            return GetObjetosEscuela(out conteoEvaluaciones, out conteoCursos, out int dummy, out dummy);
+        }
+        public (List<ObjetoEscuelaBase>, int) GetObjetosEscuela(
+            out int conteoEvaluaciones,
+            out int conteoCursos,
+            out int conteoAsignaturas,
+            bool traeEvaluaciones = true, //parámetro opcional, debe ir al final
+            bool traeAlumnos = true, //parámetro opcional, debe ir al final
+            bool traeAsignaturas = true, //parámetro opcional, debe ir al final
+            bool traeCursos = true //parámetro opcional, debe ir al final
+            )
+        {
+            return GetObjetosEscuela(out conteoEvaluaciones, out conteoCursos, out conteoAsignaturas, out int dummy);
         }
         public (List<ObjetoEscuelaBase>, int) GetObjetosEscuela(
             out int conteoEvaluaciones,
@@ -40,15 +82,15 @@ namespace CoreEscuela
             listaObj.Add(Escuela);
 
             if (traeCursos)
-            listaObj.AddRange(Escuela.Cursos);
-            
+                listaObj.AddRange(Escuela.Cursos);
+
             conteoCursos = Escuela.Cursos.Count;
             foreach (var curso in Escuela.Cursos)
-            {   
+            {
                 conteoAsignaturas += curso.Asignaturas.Count;
                 conteoAlumnos += curso.Alumnos.Count;
-                if(traeAsignaturas)
-                listaObj.AddRange(curso.Asignaturas);
+                if (traeAsignaturas)
+                    listaObj.AddRange(curso.Asignaturas);
 
                 if (traeAlumnos)
                     listaObj.AddRange(curso.Alumnos);
@@ -62,11 +104,11 @@ namespace CoreEscuela
                     }
                 }
             }
-            
+
             return (listaObj, conteoEvaluaciones);
         }
-        
-#region Métodos de carga
+
+        #region Métodos de carga
         private void CargarEvaluaciones()
         {
             foreach (var curso in Escuela.Cursos)
@@ -108,15 +150,15 @@ namespace CoreEscuela
 
         private List<Alumno> GenerarAlumnosAlAzar(int cantidad)
         {
-            string[] nombre1 = {"Alba", "Felipa", "Eusebio", "Farid", "Donald", "Álvaro", "Nicolás"};
-            string[] apellido1 = {"Ruíz", "Sarmiento", "Uribe", "Maduro", "Trump", "Toledo", "Herrera"};
-            string[] nombre2 = {"Freddy", "Anabel", "Rick", "Murty", "Silvana", "Diomedes", "Nicomedes", "Teodoro"};
+            string[] nombre1 = { "Alba", "Felipa", "Eusebio", "Farid", "Donald", "Álvaro", "Nicolás" };
+            string[] apellido1 = { "Ruíz", "Sarmiento", "Uribe", "Maduro", "Trump", "Toledo", "Herrera" };
+            string[] nombre2 = { "Freddy", "Anabel", "Rick", "Murty", "Silvana", "Diomedes", "Nicomedes", "Teodoro" };
             //linQ
             var listaAlumnos = from n1 in nombre1
                                from n2 in nombre2
                                from a1 in apellido1
-                               select new Alumno{ Nombre = $"{n1} {n2} {a1}" };
-            return listaAlumnos.OrderBy( (al) => al.UniqueId ).Take(cantidad).ToList();
+                               select new Alumno { Nombre = $"{n1} {n2} {a1}" };
+            return listaAlumnos.OrderBy((al) => al.UniqueId).Take(cantidad).ToList();
         }
 
         private void CargarCursos()
