@@ -20,8 +20,8 @@ namespace CoreEscuela
             ImprimirCursosEscuela(engine.Escuela);
 
             int dummy = 0;
-            var listaObjetos = engine.GetObjetosEscuela();
-
+            var listaObjetos = engine.GetObjetosEscuela(); //la palabra var significa que la variable tendrá el valor de lo que retorne el método
+            listaObjetos.Add(new Evaluación{Nombre="Curso loco"});
         }
 
         private static void ImprimirCursosEscuela(Escuela escuela)
