@@ -18,10 +18,26 @@ namespace CoreEscuela
             //Printer.Beep(10000, cantidad:10);
             
             ImprimirCursosEscuela(engine.Escuela);
+            Dictionary<int, string> diccionario = new Dictionary<int, string>();
 
-            int dummy = 0;
-            var listaObjetos = engine.GetObjetosEscuela(); //la palabra var significa que la variable tendrá el valor de lo que retorne el método
-            listaObjetos.Add(new Evaluación{Nombre="Curso loco"});
+            diccionario.Add(10, "JuanK");
+            diccionario.Add(23, "Lorem Ipsum");
+
+            foreach (var keyValPair in diccionario)
+            {
+                WriteLine($"Key: {keyValPair.Key} Valor: {keyValPair.Value}");
+            }
+
+            Printer.WriteTitle("Acceso a Diccionario");
+            diccionario[0] = "Pakerman";
+            WriteLine(diccionario[0]);
+            Printer.WriteTitle("Otro diccionario");
+            var dic = new Dictionary<string, string>();
+            dic["Luna"] = "Cuerpo celeste que gira alrededor de la tierra";
+            WriteLine(dic["Luna"]);
+            dic.Add("Luna", "Protagonista de Soy Luna");
+            WriteLine(dic["Luna"]);
+
         }
 
         private static void ImprimirCursosEscuela(Escuela escuela)
