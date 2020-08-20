@@ -29,10 +29,27 @@ namespace CoreEscuela
         {
             var diccionario = new Dictionary<LlaveDiccionario, IEnumerable<ObjetoEscuelaBase>>();
 
-            diccionario.Add(LlaveDiccionario.Escuela, new[] {Escuela});
-            diccionario.Add(LlaveDiccionario.Curso, Escuela.Cursos.Cast<ObjetoEscuelaBase>());
-            diccionario[LlaveDiccionario.Curso] = Escuela.Cursos.Cast<ObjetoEscuelaBase>();
+            diccionario.Add(LlaveDiccionario.Escuela, new[] { Escuela }); //Para introducir la escuela al diccionario se creó una colección de un sólo elemento
+            diccionario.Add(LlaveDiccionario.Curso, Escuela.Cursos.Cast<ObjetoEscuelaBase>()); //Se añade el curso al diccionario
+            
+            var listatmp = new List<Evaluación>();
+            var listatmpas = new List<Asignatura>();
+            var listatmpal = new List<Alumno>();
 
+            foreach (var cur in Escuela.Cursos)
+            {   
+                listatmpas.AddRange(cur.Asignaturas);
+                listatmpal.AddRange(cur.Alumnos);
+
+                foreach (var alum in cur.Alumnos)
+                {
+                    listatmp.AddRange(alum.Evaluaciones);
+                }
+                
+            }
+                diccionario.Add(LlaveDiccionario.Evaluación, listatmp.Cast<ObjetoEscuelaBase>());
+                diccionario.Add(LlaveDiccionario.Asignatura, listatmpas.Cast<ObjetoEscuelaBase>()); //Se añaden las asignaturas al diccionario
+                diccionario.Add(LlaveDiccionario.Alumno, listatmpal.Cast<ObjetoEscuelaBase>()); //Se añaden los alumnos al diccionario
             return diccionario;
         }
 

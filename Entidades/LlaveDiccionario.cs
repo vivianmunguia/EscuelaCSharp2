@@ -1,9 +1,10 @@
 public enum LlaveDiccionario
 {
+    Escuela,
     Curso,
     Alumno,
     Asignatura,
-    Escuela
+    Evaluación
 }
 /* 
 Estructuras
