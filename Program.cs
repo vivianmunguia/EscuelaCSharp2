@@ -16,8 +16,7 @@ namespace CoreEscuela
 
             Printer.WriteTitle("BIENVENIDOS A LA ESCUELA");
             //Printer.Beep(10000, cantidad:10);
-            
-            ImprimirCursosEscuela(engine.Escuela);  
+             
             Dictionary<int, string> diccionario = new Dictionary<int, string>();
 
             diccionario.Add(10, "JuanK");
@@ -30,7 +29,7 @@ namespace CoreEscuela
 
             var dictmp = engine.GetDiccionarioObjetos();  
 
-            engine.ImprimirDiccionario(dictmp);     
+            engine.ImprimirDiccionario(dictmp, true);     
 
         }
 
