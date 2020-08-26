@@ -10,7 +10,11 @@ namespace CoreEscuela
     class Program
     {
         static void Main(string[] args)
-        {
+        {   //El evento se va a ejecutar siempre que termine la aplicación, no importa cómo termine
+            AppDomain.CurrentDomain.ProcessExit += AccionDelEvento; //AccionDelEvento es un apuntador a una función
+            AppDomain.CurrentDomain.ProcessExit += (o, s) => Printer.Beep(2000,1000,1);
+            AppDomain.CurrentDomain.ProcessExit -= AccionDelEvento; 
+
             var engine = new EscuelaEngine();
             engine.Inicializar();
 
@@ -31,6 +35,13 @@ namespace CoreEscuela
 
             engine.ImprimirDiccionario(dictmp, true);     
 
+        }
+
+        private static void AccionDelEvento(object sender, EventArgs e)
+        {
+            Printer.WriteTitle("SALIENDO");
+            Printer.Beep(3000, 1000, 3);
+            Printer.WriteTitle("SALIÓ");
         }
 
         private static void ImprimirCursosEscuela(Escuela escuela)
