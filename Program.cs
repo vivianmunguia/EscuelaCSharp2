@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using CoreEscuela.App;
 using CoreEscuela.Entidades;
 using CoreEscuela.Util;
 using static System.Console;
@@ -19,21 +20,8 @@ namespace CoreEscuela
             engine.Inicializar();
 
             Printer.WriteTitle("BIENVENIDOS A LA ESCUELA");
-            //Printer.Beep(10000, cantidad:10);
-             
-            Dictionary<int, string> diccionario = new Dictionary<int, string>();
 
-            diccionario.Add(10, "JuanK");
-            diccionario.Add(23, "Lorem Ipsum");
-
-            foreach (var keyValPair in diccionario)
-            {
-                WriteLine($"Key: {keyValPair.Key} Valor: {keyValPair.Value}");
-            }
-
-            var dictmp = engine.GetDiccionarioObjetos();  
-
-            engine.ImprimirDiccionario(dictmp, true);     
+            var reporteador = new Reporteador(engine.GetDiccionarioObjetos());    
 
         }
 

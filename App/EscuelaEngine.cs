@@ -8,7 +8,7 @@ using CoreEscuela.Util;
 @
 */
 
-namespace CoreEscuela
+namespace CoreEscuela.App
 {   //el modificador sealed indica que se pueden crear instancias de la clase pero no heredar de ella
     public sealed class EscuelaEngine
     {
