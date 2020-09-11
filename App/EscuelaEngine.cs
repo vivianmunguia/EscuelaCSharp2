@@ -66,7 +66,7 @@ namespace CoreEscuela.App
         {
             var diccionario = new Dictionary<LlaveDiccionario, IEnumerable<ObjetoEscuelaBase>>();
 
-            diccionario.Add(LlaveDiccionario.Escuela, new[] { Escuela }); //Para introducir la escuela al diccionario se creó una colección de un sólo elemento
+            //diccionario.Add(LlaveDiccionario.Escuela, new[] { Escuela }); //Para introducir la escuela al diccionario se creó una colección de un sólo elemento
             diccionario.Add(LlaveDiccionario.Curso, Escuela.Cursos.Cast<ObjetoEscuelaBase>()); //Se añade el curso al diccionario
             
             var listatmp = new List<Evaluación>();
