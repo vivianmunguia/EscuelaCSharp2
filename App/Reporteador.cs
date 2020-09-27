@@ -29,7 +29,12 @@ namespace CoreEscuela.App
 
         public IEnumerable<string> GetListaAsignaturas()
         {
-            var listaEvaluaciones = GetListaEvaluaciones();
+            return GetListaAsignaturas(out var dummy);
+        }
+
+        public IEnumerable<string> GetListaAsignaturas(out IEnumerable<Evaluación> listaEvaluaciones)
+        {
+            listaEvaluaciones = GetListaEvaluaciones();
             //Devuelve las asignaturas de las evaluaciones, si hay asignaturas iguales sólo devuelve una
             return (from Evaluación ev in listaEvaluaciones
                    select ev.Asignatura.Nombre).Distinct();; //se encarga de devolver sólo un dato cuando se repite muchas veces
@@ -38,6 +43,16 @@ namespace CoreEscuela.App
         public Dictionary<string, IEnumerable<Evaluación>> GetDicEvaluaXAsig()
         {
             var dictaRta = new Dictionary<string, IEnumerable<Evaluación>>();
+            
+            var listaAsig = GetListaAsignaturas(out var listaEval);
+
+            foreach (var asig in listaAsig) //Se recorren las asignaturas obtenidas
+            {   //Se seleccionan las evaluaciones que coincidan con la asignatura actual
+                var evalAsig = from eval in listaEval
+                               where eval.Asignatura.Nombre == asig
+                               select eval; 
+                dictaRta.Add(asig, evalAsig);
+            }
             return dictaRta;
         }
 
