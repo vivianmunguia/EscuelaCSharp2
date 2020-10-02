@@ -37,7 +37,7 @@ namespace CoreEscuela.App
             listaEvaluaciones = GetListaEvaluaciones();
             //Devuelve las asignaturas de las evaluaciones, si hay asignaturas iguales sólo devuelve una
             return (from Evaluación ev in listaEvaluaciones
-                   select ev.Asignatura.Nombre).Distinct();; //se encarga de devolver sólo un dato cuando se repite muchas veces
+                   select ev.Asignatura.Nombre).Distinct();; //Se encarga de devolver sólo un dato cuando se repite muchas veces
         }
 
         public Dictionary<string, IEnumerable<Evaluación>> GetDicEvaluaXAsig()
@@ -54,6 +54,26 @@ namespace CoreEscuela.App
                 dictaRta.Add(asig, evalAsig);
             }
             return dictaRta;
+        }
+
+        public  Dictionary<string, IEnumerable<object>> GetPromeAlumnPorAsignatura()
+        {
+            var rta = new Dictionary<string, IEnumerable<object>>();
+            var dicEvalXAsig = GetDicEvaluaXAsig();
+
+            foreach (var asigConEval in dicEvalXAsig)
+            {
+                var dumy = from eval in asigConEval.Value
+                            select new
+                            { 
+                                eval.Alumno.UniqueId, 
+                                AlumnoNombre = eval.Alumno.Nombre,
+                                NombreEval = eval.Nombre,
+                                eval.Nota
+                            };
+            }
+
+            return rta;
         }
 
     }
