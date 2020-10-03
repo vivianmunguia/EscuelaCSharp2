@@ -64,12 +64,12 @@ namespace CoreEscuela.App
             foreach (var asigConEval in dicEvalXAsig)
             {
                 var dumy = from eval in asigConEval.Value
+                            group eval by eval.Alumno.UniqueId
+                            into grupoEvalsAlumno
                             select new
                             { 
-                                eval.Alumno.UniqueId, 
-                                AlumnoNombre = eval.Alumno.Nombre,
-                                NombreEval = eval.Nombre,
-                                eval.Nota
+                                AlumnoId = grupoEvalsAlumno.Key,
+                                Promedio = grupoEvalsAlumno.Average(evaluacion => evaluacion.Nota)
                             };
             }
 
