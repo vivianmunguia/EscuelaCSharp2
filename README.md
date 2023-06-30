@@ -1,2 +1,2 @@
 # EscuelaCSharp2
-Continuación de la escuela del curso de Fundamentos de C#
+Second part of the Fundamentos de C# course school
